@@ -34,5 +34,12 @@ describe SumsExtractor do
         expect(SumsExtractor.extract("1 * 2")[1]).to eq 2
       end
     end
+
+    context "Invalid input" do
+      it "throws an error when a variable is included" do
+        expect{SumsExtractor.extract("a + 3")}.to raise_error("Invalid input; Input must only include numbers and operators")
+      end
+
+    end
   end
 end

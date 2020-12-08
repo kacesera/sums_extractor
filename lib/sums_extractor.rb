@@ -4,16 +4,21 @@ class SumsExtractor
     @@extracted_sums = [sums_string]
 
     split_string = sums_string.split(" ")
-    first_num = split_string[0].to_i
-    second_num = split_string[2].to_i
+    first_num = split_string[0]
+    second_num = split_string[2]
     operator = split_string[1]
-
-    find_sum(first_num, second_num, operator)
+    raise "Invalid input; Input must only include numbers and operators" if invalid?(first_num, second_num)
+    find_sum(first_num.to_i, second_num.to_i, operator)
 
     @@extracted_sums
   end
 
   private
+
+  def self.invalid?(first_num, second_num)
+    string_nums = ["1","2","3","4","5","6","7","8","9","0"]
+    !string_nums.include?(first_num) || !string_nums.include?(second_num)
+  end
 
   def self.find_sum(first_num, second_num, operator)
     if operator == "+"
