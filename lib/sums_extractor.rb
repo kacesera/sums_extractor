@@ -8,6 +8,14 @@ class SumsExtractor
     second_num = split_string[2].to_i
     operator = split_string[1]
 
+    find_sum(first_num, second_num, operator)
+
+    @@extracted_sums
+  end
+
+  private
+
+  def self.find_sum(first_num, second_num, operator)
     if operator == "+"
       add_nums(first_num, second_num)
     elsif operator == "-"
@@ -17,11 +25,7 @@ class SumsExtractor
     elsif operator == "/"
       divide_nums(first_num, second_num)
     end
-
-    @@extracted_sums
   end
-
-  private
 
   def self.add_nums(first_num, second_num)
     @@extracted_sums << (first_num + second_num)
