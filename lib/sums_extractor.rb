@@ -1,7 +1,7 @@
 class SumsExtractor
 
   def self.extract(sums_string) 
-    extracted_sums = [sums_string]
+    @@extracted_sums = [sums_string]
 
     split_string = sums_string.split(" ")
     first_num = split_string[0].to_i
@@ -9,16 +9,34 @@ class SumsExtractor
     operator = split_string[1]
 
     if operator == "+"
-      extracted_sums << (first_num + second_num)
+      add_nums(first_num, second_num)
     elsif operator == "-"
-      extracted_sums << (first_num - second_num)
+      substract_nums(first_num, second_num)
     elsif operator == "*"
-      extracted_sums << (first_num * second_num)
+      multiply_nums(first_num, second_num)
     elsif operator == "/"
-      extracted_sums << (first_num / second_num)
+      divide_nums(first_num, second_num)
     end
 
-    extracted_sums
+    @@extracted_sums
+  end
+
+  private
+
+  def self.add_nums(first_num, second_num)
+    @@extracted_sums << (first_num + second_num)
+  end
+
+  def self.substract_nums(first_num, second_num)
+    @@extracted_sums << (first_num - second_num)
+  end
+
+  def self.divide_nums(first_num, second_num)
+    @@extracted_sums << (first_num / second_num)
+  end
+
+  def self.multiply_nums(first_num, second_num)
+    @@extracted_sums << (first_num * second_num)
   end
 
 end
